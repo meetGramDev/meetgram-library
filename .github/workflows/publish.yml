@@ -1,10 +1,10 @@
 name: Publish to NPM
- 
+
 on:
   push:
   pull_request:
-    branches: ["main"]
- 
+    branches: ['main']
+
 jobs:
   build:
     timeout-minutes: 15
@@ -14,32 +14,43 @@ jobs:
         node-version: [20]
 
     steps:
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          release-type: node
+
+      # The logic below handles the npm publication.
+      # The if statements ensure that a publication only occurs when a new release is created.
       - name: Check out code
         uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
         with:
           fetch-depth: 2
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
-        with: 
+        with:
           path: .turbo
           key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: | 
+          restore-keys: |
             ${{ runner.os }}-turbo-
- 
+
       - uses: pnpm/action-setup@v3
         with:
           version: 8
- 
+
       - name: Setup Node.js environment ${{ matrix.node-version }} version
         uses: actions/setup-node@v4
+        if: ${{ steps.release.outputs.release_created }}
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
- 
+
       - name: Install dependencies
         run: pnpm install
-      
+        if: ${{ steps.release.outputs.release_created }}
+
       - name: Publish
         id: changesets
         uses: changesets/action@v1
@@ -49,8 +60,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Send a Slack notification if a publish happens
-      #   if: steps.changesets.outputs.published == 'true'
-      #   # You can do something when a publish happens.
-      #   run: my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was published!"
+        if: ${{ steps.release.outputs.release_created }}
