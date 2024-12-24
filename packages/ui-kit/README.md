@@ -1,16 +1,17 @@
-# Usage:
+# @meetgram/ui-kit
 
-- Clone template: (replace `my-lib` with your project name)
-  ```bash
-  npx degit https://github.com/ershisan99/lib-with-storybook-starter my-lib
-  ```
+All the UI components of Meetgram.
 
-- Change directory: (replace `my-lib` with your project name)
+### Usage:
+
+- Install package:
+
   ```bash
-  cd my-lib
+    pnpm add @meetgram/ui-kit@latest
   ```
 
 - Install dependencies:
+
   ```bash
   pnpm i
   ```
@@ -19,4 +20,3 @@
   ```bash
   pnpm dev
   ```
-
