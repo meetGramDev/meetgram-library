@@ -1,10 +1,10 @@
 name: Publish to NPM
- 
+
 on:
   push:
   pull_request:
-    branches: ["main"]
- 
+    branches: ['main']
+
 jobs:
   build:
     timeout-minutes: 15
@@ -21,25 +21,25 @@ jobs:
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
-        with: 
+        with:
           path: .turbo
           key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: | 
+          restore-keys: |
             ${{ runner.os }}-turbo-
- 
+
       - uses: pnpm/action-setup@v3
         with:
           version: 8
- 
+
       - name: Setup Node.js environment ${{ matrix.node-version }} version
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
- 
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Publish
         id: changesets
         uses: changesets/action@v1
@@ -47,5 +47,6 @@ jobs:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
