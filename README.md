@@ -19,7 +19,8 @@ Each package is 100% [TypeScript](https://www.typescriptlang.org/).
     - `minor` - new features, compatible with current API (1.0.1 => 1.1.0)
     - `major` - major changes, incompatible with current API (1.0.1 => 2.0.0)
 2. Run `pnpm version-packages` for versioning. All changesets will be transferred to changelog.md and version in each package.json will be up to the appropriate one
-3. When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json` and publish your package
+3. Commit and push your branch. Create PR
+4. When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json` and publish your package
 
 ## Useful commands
 
