@@ -1,6 +1,6 @@
 {
   "name": "@meetgram/utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "private": false,
   "sideEffects": false,
@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
+    "dev": "tsup src/index.ts --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
@@ -25,10 +25,13 @@
     "@it-incubator/eslint-config": "^1.0.1",
     "@it-incubator/prettier-config": "^0.1.2",
     "@meetgram/typescript-config": "workspace:*",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "clsx": "^2.0.0",
     "eslint": "^9.17.0",
+    "next": "^15.1.2",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-hook-form": "^7.54.2",
     "tailwind-merge": "^2.5.5",
@@ -38,7 +41,9 @@
   "peerDependencies": {
     "clsx": "^2",
     "react": "^17",
-    "tailwind-merge": "^2"
+    "next": "^13",
+    "tailwind-merge": "^2",
+    "nprogress": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"
