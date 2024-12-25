@@ -1,12 +1,19 @@
 {
   "name": "@meetgram/utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "private": false,
   "sideEffects": false,
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
