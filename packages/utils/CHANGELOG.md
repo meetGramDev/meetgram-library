@@ -1,5 +1,11 @@
 # @meetgram/utils
 
+## 0.2.1
+
+### Patch Changes
+
+- add flattenTranslation, getTruncatedMessage and useInfiniteScroll
+
 ## 0.2.0
 
 ### Minor Changes
