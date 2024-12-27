@@ -1,43 +1,52 @@
 {
   "name": "@meetgram/utils",
-  "version": "0.2.2",
+
+  "version": "0.2.4",
+
   "license": "MIT",
   "private": false,
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "exports": {
-    "import": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs,"
-    },
-    "require": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
+  "types": "./dist/index.d.mts",
   "files": [
-    "dist"
+    "dist/**"
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup src/index.ts --watch",
+    "dev": "tsup --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./functions": {
+      "types": "./dist/functions/functions.d.mts",
+      "import": "./dist/functions/functions.mjs",
+      "require": "./dist/functions/functions.mjs",
+      "default": "./dist/functions/functions.mjs"
+    },
+    "./hooks": {
+      "types": "./dist/hooks.d.mts",
+      "import": "./dist/hooks.mjs",
+      "require": "./dist/hooks.mjs",
+      "default": "./dist/hooks.mjs"
+    }
   },
   "devDependencies": {
     "@it-incubator/eslint-config": "^1.0.1",
     "@it-incubator/prettier-config": "^0.1.2",
     "@meetgram/typescript-config": "workspace:*",
-    "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "clsx": "^2.0.0",
     "eslint": "^9.17.0",
-    "next": "^15.1.2",
-    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-hook-form": "^7.54.2",
     "tailwind-merge": "^2.5.5",
@@ -46,8 +55,8 @@
   },
   "dependencies": {
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.5.5",
-    "react-intersection-observer": "^9.13.0"
+    "react-intersection-observer": "9.13.0",
+    "tailwind-merge": "^2.5.5"
   },
   "peerDependencies": {
     "react": "^16.9.0 || ^17 || ^18",

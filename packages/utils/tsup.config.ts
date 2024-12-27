@@ -1,14 +1,15 @@
 import { defineConfig } from 'tsup'
-import { dependencies, devDependencies } from './package.json'
 
 export default defineConfig(options => ({
-  entryPoints: ['src/index.ts'],
-  format: ['esm', 'cjs'],
+  entry: ['src/functions/functions.ts', 'src/hooks/hooks.ts', 'src/index.ts'],
+  outDir: 'dist',
+  format: ['esm'],
   dts: true,
   sourcemap: false,
-  external: [...Object.keys(devDependencies), ...Object.keys(dependencies)],
+  external: ['react'],
   target: 'esnext',
-  treeshake: true,
   minify: true,
+  clean: true,
+  skipNodeModulesBundle: true,
   ...options,
 }))

@@ -1,10 +1,21 @@
 # @meetgram/utils
 
+
+## 0.2.3
+
+
+- fix exports in package.json
+
+
 ## 0.2.2
 
 ### Patch Changes
 
+
 - the rest add datePicker snd several storybooks
+
+- add a 'use client' directive
+
 
 ## 0.2.1
 
