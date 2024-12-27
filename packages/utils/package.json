@@ -1,6 +1,6 @@
 {
   "name": "@meetgram/utils",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "private": false,
   "sideEffects": false,
@@ -25,7 +25,7 @@
       "default": "./dist/index.mjs"
     },
     "./functions": {
-      "types": "./dist/functions/functions.d.ts",
+      "types": "./dist/functions/functions.d.mts",
       "import": "./dist/functions/functions.mjs",
       "require": "./dist/functions/functions.mjs",
       "default": "./dist/functions/functions.mjs"

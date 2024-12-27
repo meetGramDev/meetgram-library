@@ -1,5 +1,11 @@
 # @meetgram/utils
 
+## 0.2.3
+
+### Patch Changes
+
+- fix exports in package.json
+
 ## 0.2.2
 
 ### Patch Changes
