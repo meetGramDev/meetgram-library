@@ -1,3 +1,4 @@
+'use client'
 import type { FieldNamesMarkedBoolean, FieldPath, FieldValues } from 'react-hook-form'
 
 import { useEffect } from 'react'

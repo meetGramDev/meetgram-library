@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 
 /** this hook return how high is screen */
