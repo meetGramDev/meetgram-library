@@ -1,6 +1,6 @@
 {
   "name": "@meetgram/ui-kit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "private": false,
   "main": "dist/index.js",
@@ -21,7 +21,6 @@
       "default": "./dist/index.js"
     }
   },
-
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "vite build && tsc",
