@@ -1,8 +1,6 @@
 {
   "name": "@meetgram/utils",
-
-  "version": "0.2.4",
-
+  "version": "0.2.5",
   "license": "MIT",
   "private": false,
   "sideEffects": false,
@@ -33,10 +31,10 @@
       "default": "./dist/functions/functions.mjs"
     },
     "./hooks": {
-      "types": "./dist/hooks.d.mts",
-      "import": "./dist/hooks.mjs",
-      "require": "./dist/hooks.mjs",
-      "default": "./dist/hooks.mjs"
+      "types": "./dist/hooks/hooks.d.mts",
+      "import": "./dist/hooks/hooks.mjs",
+      "require": "./dist/hooks/hooks.mjs",
+      "default": "./dist/hooks/hooks.mjs"
     }
   },
   "devDependencies": {
