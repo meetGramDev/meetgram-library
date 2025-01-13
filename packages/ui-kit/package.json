@@ -21,7 +21,6 @@
       "default": "./dist/index.js"
     }
   },
-
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "vite build && tsc",
