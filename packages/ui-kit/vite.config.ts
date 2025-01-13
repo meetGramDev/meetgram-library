@@ -21,6 +21,9 @@ export default defineConfig({
         ...Object.keys(dependencies),
         ...Object.keys(devDependencies),
       ],
+    output:{
+      banner:"'use client'"
+    },
     },
     sourcemap: true,
     target: 'esnext',

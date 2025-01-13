@@ -1,7 +1,13 @@
-@import '../../styles/mixins';
+
 
 .button {
-  @include flex;
+  @mixin flex($flex-direction: row, $justify-content: center, $align-items: center, $gap: 0) {
+    display: flex;
+    flex-direction: $flex-direction;
+    gap: $gap;
+    align-items: $align-items;
+    justify-content: $justify-content;
+  }
 
   cursor: pointer;
   background: transparent;
