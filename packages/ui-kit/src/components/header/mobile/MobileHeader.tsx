@@ -6,6 +6,24 @@ type Props = {
   sidebarComponent?: ReactNode
   sidebarClassName?: string
 } & ComponentProps<'header'>
+
+/**
+ * A responsive mobile header component that supports a sidebar component and additional controls.
+ *
+ * @example
+ * // Example usage of MobileHeader
+ * const App = () => {
+ *   return (
+ *     <MobileHeader
+ *       className="custom-header"
+ *       sidebarComponent={<button>Toggle Menu</button>}
+ *       sidebarClassName="custom-sidebar"
+ *     >
+ *       <h1>My Logo</h1>
+ *     </MobileHeader>
+ *   );
+ * };
+ */
 export const MobileHeader = ({
   className,
   children,
