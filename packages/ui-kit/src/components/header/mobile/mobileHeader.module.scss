@@ -1,0 +1,14 @@
+@use '../../../styles/mixins.scss' as mixins;
+
+.header {
+  @include mixins.flex(row, space-between, center);
+
+  width: 100vw;
+  padding: 1rem;
+  border-bottom: 1px solid var(--dark-color-300);
+}
+
+.controls {
+  @include mixins.flex(row, center, center, 1rem);
+}
+
