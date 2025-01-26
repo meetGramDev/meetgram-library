@@ -10,7 +10,7 @@ import {
 } from 'react'
 
 import { LogOutIcon } from '../../assets/icons/LogOut'
-import { ALLOWED_TYPES } from '../../const/const'
+import { ALLOWED_TYPES } from '../../const'
 
 import { Nullable } from '../../types'
 import {cn} from "@meetgram/utils";

@@ -38,3 +38,4 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadixRadioGroup.Root>, Ra
     )
   }
 )
+RadioGroup.displayName = 'RadioGroup'

@@ -42,3 +42,4 @@ export const TabContent = forwardRef<ElementRef<typeof Tabs.Content>, TabContent
     )
   }
 )
+TabContent.displayName = 'TabContent'
