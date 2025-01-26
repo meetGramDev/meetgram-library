@@ -2,6 +2,12 @@
   "name": "@meetgram/tailwind-config",
   "version": "1.0.1",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meetGramDev/meetgram-library/tree/main/packages/tailwind-config#readme",
+    "directory": "packages/tailwind-config"
+  },
+  "homepage": "https://github.com/meetGramDev/meetgram-library",
   "exports": {
     ".": "./tailwind.config.ts"
   },
