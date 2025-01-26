@@ -42,6 +42,9 @@ type Props<T extends ElementType = 'a'> = {
   as?: T
 } & ComponentPropsWithoutRef<T>
 
+/**
+ * A sidebar list item component. Use it together with the parent `DesktopSidebar` or `MobileSidebar` components.
+ */
 export const SidebarItem = <T extends ElementType = 'a'>({
   className,
   item,
