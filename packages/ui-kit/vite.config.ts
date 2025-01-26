@@ -5,6 +5,13 @@ import { defineConfig } from 'vite'
 import { dependencies, devDependencies } from './package.json'
 
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      },
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

@@ -13,7 +13,7 @@ import {
 
 const meta = {
   tags: ['autodocs'],
-  title: 'Components/Table',
+  title: 'shared/Table',
 } satisfies Meta
 
 export default meta

@@ -1,14 +1,13 @@
-'use client'
 import React, { ElementRef, forwardRef } from 'react'
 
 import { ArrowDown } from '../../assets/icons/ArrowDown'
 
-import { Option, OptionType } from './option'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import * as SelectRadix from '@radix-ui/react-select'
+import { Option, OptionType } from './option'
 
+import { cn } from '@meetgram/utils'
 import s from './select.module.scss'
-import {cn} from "@meetgram/utils";
 
 type Props = {
   /**
@@ -129,3 +128,4 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Trigger>, Props>(
     )
   }
 )
+Select.displayName = 'Select'

@@ -15,3 +15,4 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, Props>(
     )
   }
 )
+ButtonIcon.displayName = 'ButtonIcon'
