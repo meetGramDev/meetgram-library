@@ -3,6 +3,12 @@
   "version": "0.2.5",
   "license": "MIT",
   "private": false,
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meetGramDev/meetgram-library/tree/main/packages/utils#readme",
+    "directory": "packages/utils"
+  },
+  "homepage": "https://github.com/meetGramDev/meetgram-library",
   "sideEffects": false,
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
