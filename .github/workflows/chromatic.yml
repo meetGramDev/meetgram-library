@@ -5,6 +5,10 @@ on:
   push:
     branches: ['main']
 
+defaults:
+  run:
+    working-directory: 'packages/ui-kit'
+
 jobs:
   test:
     # Operating System
