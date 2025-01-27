@@ -1,6 +1,5 @@
 # Meetgram library
 
-
 ## What's inside?
 
 This repo includes the following packages:
@@ -13,17 +12,42 @@ Each package is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ## Deploy a new version
 
-1. After making changes in your branch, run `pnpm changeset` locally and add a changelog description (for each feature/refactoring/docs/update/fix). 
+1. After making changes in your branch, run `pnpm changeset` locally and add a changelog description (for each feature/refactoring/docs/update/fix).
    Types of versioning:
-    - `patch` - bug fixes, backward compatible (1.0.1 => 1.0.2)
-    - `minor` - new features, compatible with current API (1.0.1 => 1.1.0)
-    - `major` - major changes, incompatible with current API (1.0.1 => 2.0.0)
+   - `patch` - bug fixes, backward compatible (1.0.1 => 1.0.2)
+   - `minor` - new features, compatible with current API (1.0.1 => 1.1.0)
+   - `major` - major changes, incompatible with current API (1.0.1 => 2.0.0)
 2. Run `pnpm version-packages` for versioning. All changesets will be transferred to changelog.md and version in each package.json will be up to the appropriate one
 3. Commit and push your branch. Create PR
 4. When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json` and publish your package
 
-## Useful commands
+## Deploy storybook
 
+Go to the ui-kit subfolder from root directory
+
+```bash
+cd packages/ui-kit
+```
+
+Run build
+
+```bash
+pnpm build-storybook
+```
+
+Publish
+
+```bash
+pnpm publish-storybook
+```
+
+Or run each command in root directory with the flag
+
+```bash
+pnpm --filter=ui-kit <command>
+```
+
+## Useful commands
 
 ### Dependency installation
 
@@ -34,6 +58,7 @@ pnpm add <package-name> --recursive --filter=ui --filter=@repo/ui
 ```
 
 To install a dependency for the entire monorepo, use the `-w` workspaces flag:
+
 ```bash
 pnpm add -w <package-name>
 ```
