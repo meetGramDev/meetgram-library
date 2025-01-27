@@ -1,5 +1,11 @@
 # @meetgram/ui-kit
 
+## 0.2.1
+
+### Patch Changes
+
+- add storybook docs
+
 ## 0.2.0
 
 ### Minor Changes
