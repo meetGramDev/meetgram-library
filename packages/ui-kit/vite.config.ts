@@ -34,5 +34,7 @@ export default defineConfig({
     },
     target: 'esnext',
     emptyOutDir: true,
+    minify: true,
+    sourcemap: true,
   },
 })
