@@ -40,6 +40,10 @@ type Props<T extends ElementType = 'a'> = {
    * The underlying component or element type to render (e.g., 'a', 'button').
    */
   as?: T
+  /**
+   * Specify whether the link should be active
+   */
+  isActiveLink?: boolean
 } & ComponentPropsWithoutRef<T>
 
 /**
@@ -51,11 +55,9 @@ export const SidebarItem = <T extends ElementType = 'a'>({
   isMobile,
   onItemClick,
   as,
+  isActiveLink,
   ...rest
 }: Props<T>) => {
-  console.log(window.location.pathname)
-  const isActiveLink = window.location.pathname === item.hrefPath
-
   const AsComponent = as || 'a'
 
   return (

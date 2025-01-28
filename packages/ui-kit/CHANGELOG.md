@@ -1,5 +1,11 @@
 # @meetgram/ui-kit
 
+## 0.2.2
+
+### Patch Changes
+
+- 733f331:
+
 ## 0.2.1
 
 ### Patch Changes
