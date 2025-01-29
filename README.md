@@ -6,7 +6,7 @@ This repo includes the following packages:
 
 - `@meetgram/ui-kit`: A stub React component library
 - `@meetgram/utils`: Shared utilities
-- `@repo/tailwind-config`: `tailwind` configurations with design system presets
+- `@@meetgram/tailwind-config`: `tailwind` configurations with design system presets
 
 Each package is 100% [TypeScript](https://www.typescriptlang.org/).
 
