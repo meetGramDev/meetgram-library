@@ -4,8 +4,8 @@ All the UI components and icons of Meetgram.
 
 ## Documentation
 
-- **[Storybook](https://67978c8e27896266439833ea-otpsuhmvgq.chromatic.com)**
-- **[Chromatic Deploy](https://www.chromatic.com/library?appId=67978c8e27896266439833ea)**
+- **[Storybook](https://67978c8e27896266439833ea-inavsjjzhh.chromatic.com)**
+- **[Deployed Storybook](https://www.chromatic.com/library?appId=67978c8e27896266439833ea)**
 
 ### Usage:
 
