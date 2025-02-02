@@ -1,5 +1,11 @@
 # @meetgram/ui-kit
 
+## 0.1.8
+
+### Patch Changes
+
+- d5a3dcc: added datePicker
+
 ## 0.2.2
 
 ### Patch Changes
