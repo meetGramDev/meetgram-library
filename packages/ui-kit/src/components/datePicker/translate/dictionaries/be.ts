@@ -1,0 +1,12 @@
+export const be = {"January" : "Студзень",
+  "February" : "Люты",
+  "March" : "Сакавік",
+  "April" : "Красавік",
+  "May" : "Май",
+  "June" : "Чэрвень",
+  "July" : "Ліпень",
+  "August" : "Жнівень",
+  "September" : "Верасень",
+  "October" : "Кастрычнік",
+  "November" : "Лістапад",
+  "December" : "Снежань"}
