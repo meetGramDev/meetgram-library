@@ -1,14 +1,5 @@
 import {useRouter} from "next/router";
 
-
-/*const dictionaries = {
-    be: () => import('./dictionaries/be').then(module => module),
-    en: () => import('./dictionaries/en').then(module => module),
-    es: () => import('./dictionaries/es').then(module => module),
-    ru: () => import('./dictionaries/ru').then(module => module),
-    uk: () => import('./dictionaries/uk').then(module => module),
-}*/
-
 import {be} from './dictionaries/be';
 import {es} from './dictionaries/es';
 import {en} from './dictionaries/en';
