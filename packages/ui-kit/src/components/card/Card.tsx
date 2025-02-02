@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 
-import clsx from 'clsx'
-
+import { cn } from '@meetgram/utils'
 import s from './card.module.scss'
 
 type ProtoType = {
@@ -9,5 +8,5 @@ type ProtoType = {
   className?: string
 }
 export const Card = ({ children, className }: ProtoType) => {
-  return <div className={clsx(clsx(s.main), [className])}>{children}</div>
+  return <div className={cn(s.main, className)}>{children}</div>
 }

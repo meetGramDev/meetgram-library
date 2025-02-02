@@ -1,5 +1,23 @@
 # @meetgram/ui-kit
 
+## 0.2.2
+
+### Patch Changes
+
+- 733f331:
+
+## 0.2.1
+
+### Patch Changes
+
+- add storybook docs
+
+## 0.2.0
+
+### Minor Changes
+
+- Add new components: image-carousel, photo, expandable-text, header, sidebar, debounce search. Various bug fixes.
+
 ## 0.1.6
 
 ### Patch Changes

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import googleIcon from '@/shared/assets/icons/google-icon.svg'
-
+import googleIcon from './google-icon.svg'
 
 import { ButtonIcon } from './ButtonIcon'
 

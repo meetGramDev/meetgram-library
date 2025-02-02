@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
-import { Check } from '../../assets/icons/Check'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
+import { Check } from '../../assets/icons/Check'
 
 import s from './Checkbox.module.scss'
 
@@ -54,3 +54,4 @@ export const Checkbox = forwardRef<
     </div>
   )
 })
+Checkbox.displayName = 'Checkbox'

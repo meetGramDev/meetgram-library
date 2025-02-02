@@ -1,10 +1,9 @@
 import { ElementRef, forwardRef } from 'react'
 
-
 import * as SelectRadix from '@radix-ui/react-select'
 
+import { cn } from '@meetgram/utils'
 import s from './option.module.scss'
-import {cn} from "@meetgram/utils";
 
 export type OptionType = {
   disabled?: boolean
@@ -32,3 +31,4 @@ export const Option = forwardRef<ElementRef<typeof SelectRadix.Item>, SelectRadi
     )
   }
 )
+Option.displayName = 'Option'

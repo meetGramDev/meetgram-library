@@ -2,7 +2,18 @@
 @forward 'boilerplate';
 @forward 'screens';
 @forward 'colors';
+@forward 'toastify';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  // header
+  --header-desktop-height: 3.75rem;
+
+  // sidebar
+  --sidebar-desktop-width: 15%;
+  --sidebar-desktop-z-index: 1;
+  --sidebar-mobile-z-index: 99;
+}

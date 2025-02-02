@@ -1,14 +1,30 @@
 # @meetgram/ui-kit
 
-All the UI components of Meetgram.
+All the UI components and icons of Meetgram.
+
+## Documentation
+
+- **[Storybook](https://67978c8e27896266439833ea-inavsjjzhh.chromatic.com)**
+- **[Deployed Storybook](https://www.chromatic.com/library?appId=67978c8e27896266439833ea)**
 
 ### Usage:
 
 - Install package:
 
   ```bash
+    npm i @meetgram/ui-kit@latest
+  ```
+
+  ```bash
+    yarn add @meetgram/ui-kit@latest
+  ```
+
+  ```bash
     pnpm add @meetgram/ui-kit@latest
   ```
+
+  <!--
+
 
 - Install dependencies:
 
@@ -17,6 +33,7 @@ All the UI components of Meetgram.
   ```
 
 - Run storybook:
-  ```bash
+  ````bash
   pnpm dev
-  ```
+  ``` -->
+  ````

@@ -1,6 +1,7 @@
 export * from './cn'
 export * from './dateFormatting'
 export * from './flattenTranslations'
+export * from './getTimeAgo'
 export * from './getTruncatedMessage'
 export * from './range'
 export * from './readFile'

@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { CloseIcon } from '../../assets/icons/CloseIcon'
 import * as RadixModal from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
+import { CloseIcon } from '../../assets/icons/CloseIcon'
 
 import s from './Dialog.module.scss'
 
@@ -35,3 +35,4 @@ export const Dialog = forwardRef<ElementRef<typeof RadixModal.Content>, Props>(
     )
   }
 )
+Dialog.displayName = 'Dialog'

@@ -2,30 +2,39 @@ import { resolve } from 'path'
 
 import { defineConfig } from 'vite'
 
-import { dependencies, devDependencies } from './package.json'
+import { dependencies, devDependencies, peerDependencies } from './package.json'
 
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      },
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       // the proper extensions will be added
       fileName: 'index',
       formats: ['es'],
-      name: '@meetgram/ui-kit',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: [
-        'react/jsx-runtime',
+        ...Object.keys(peerDependencies),
         ...Object.keys(dependencies),
         ...Object.keys(devDependencies),
+        'react/jsx-runtime',
       ],
-    output:{
-      banner:"'use client'"
+      output: {
+        banner: "'use client'",
+      },
     },
-    },
-    sourcemap: true,
     target: 'esnext',
+    emptyOutDir: true,
+    minify: true,
+    sourcemap: true,
   },
 })
