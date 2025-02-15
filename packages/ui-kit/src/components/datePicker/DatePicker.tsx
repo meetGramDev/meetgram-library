@@ -1,8 +1,8 @@
-import ReactDatePicker, { registerLocale } from '../../../node_modules/react-datepicker'
+import ReactDatePicker, { registerLocale } from 'react-datepicker'
 
 import { Calendar } from '../../assets/icons/Calendar'
 import { range } from '@meetgram/utils'
-import  useTranslate  from './translate/useTranslate'
+import useTranslate from './translate/useTranslate'
 
 import clsx from 'clsx'
 import { getMonth } from 'date-fns/getMonth'
@@ -10,14 +10,13 @@ import { getYear } from 'date-fns/getYear'
 import { be, es, uk } from 'date-fns/locale'
 import { enUS } from 'date-fns/locale/en-US'
 import { ru } from 'date-fns/locale/ru'
-import { useRouter } from 'next/router'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
 import s from './DatePicker.module.scss'
-import {Button} from "../button/button";
-import {Input} from "../input";
-import {Select, Option} from "../select";
+import { Button } from '../button/button'
+import { Input } from '../input'
+import { Select, Option } from '../select'
 
 registerLocale('ru', ru)
 registerLocale('en', enUS)
@@ -41,6 +40,7 @@ type Props = {
    */
   selectsRange?: true | undefined
   startDate: Date | undefined
+  locale?: string
 }
 
 export const DatePicker = ({
@@ -54,12 +54,12 @@ export const DatePicker = ({
   required,
   selectsRange,
   startDate,
+  locale,
 }: Props) => {
-  const t = useTranslate()
-  const { locale } = useRouter()
+  const t = useTranslate(locale)
 
   const monthMonth: string[] = [
-    t["January"],
+    t['January'],
     t['February'],
     t['March'],
     t['April'],
@@ -109,7 +109,7 @@ export const DatePicker = ({
           <Input className={clsx(s.dateInput, inputClassName && s.hasError)} error={error} />
         }
         dateFormat={'dd/MM/yyyy'}
-        dayClassName={() => s.day}//todo here should be check
+        dayClassName={() => s.day} //todo here should be check
         disabled={disabled}
         endDate={endDate}
         icon={<Calendar className={clsx(s.datePickerIcon, classes.hasError)} />}
