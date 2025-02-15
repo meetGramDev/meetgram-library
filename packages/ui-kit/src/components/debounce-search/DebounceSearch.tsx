@@ -3,7 +3,18 @@ import { Input } from '../input'
 import s from './debounce-search.module.scss'
 
 export type DebounceInputProps = {
-  onValueQuery: (value: string) => void
+  defaultValue?: string
+  /**
+   * Delay time in ms
+   * Default: 300ms
+   */
+  delay?: number
+  /**
+   * A function is called whether a debounced value was changed
+   * @param value debounced value
+   * @returns {void}
+   */
+  onValueQuery?: (value: string) => void
 }
 /**
  * A React component that provides a search input with debounce functionality.
@@ -11,27 +22,39 @@ export type DebounceInputProps = {
  * @example
  * <DebounceSearch onValueQuery={(value) => console.log(value)} />
  */
-export const DebounceSearch = ({ onValueQuery }: DebounceInputProps) => {
-  const [timerId, setTimerId] = useState(0)
-  const [str, setStr] = useState('')
+export const DebounceSearch = ({
+  onValueQuery,
+  defaultValue = '',
+  delay = 500,
+}: DebounceInputProps) => {
+  const [str, setStr] = useState<string>(defaultValue)
 
   useEffect(() => {
-    setTimerId(
-      +setTimeout(() => {
-        onValueQuery(str)
-      }, 1500)
-    )
+    if (!onValueQuery) {
+      return
+    }
 
-    return clearTimeout(timerId)
-  }, [str, onValueQuery])
+    const timerId = setTimeout(() => {
+      onValueQuery(str)
+    }, delay)
+
+    return () => clearTimeout(timerId)
+  }, [str, onValueQuery, delay])
 
   const onChangeValue = (value: string) => {
     setStr(value)
   }
 
+  const onClearValue = () => {
+    setStr('')
+  }
+
   return (
     <>
       <Input
+        clearValue={onClearValue}
+        defaultValue={defaultValue}
+        value={str}
         className={s.search}
         onChange={e => onChangeValue(e.currentTarget.value)}
         placeholder={'Search'}
