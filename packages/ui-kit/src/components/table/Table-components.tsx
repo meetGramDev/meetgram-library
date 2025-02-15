@@ -1,7 +1,7 @@
+import { cn } from '@meetgram/utils'
 import * as React from 'react'
-import {cn} from "@meetgram/utils";
-
-
+import { CaretIcon } from './Caret-icon'
+import { SortDirection } from './Table.types'
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
@@ -72,13 +72,25 @@ TableRow.displayName = 'TableRow'
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
-  React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
+  React.ThHTMLAttributes<HTMLTableCellElement> & { sort?: SortDirection; sortingClassname?: string }
+>(({ className, children, sort, sortingClassname, ...props }, ref) => (
   <th
-    className={cn('h-12 px-4 align-middle font-bold [&:has([role=checkbox])]:pr-0', className)}
+    className={cn(
+      'h-12 px-4 align-middle text-left font-bold [&:has([role=checkbox])]:pr-0 cursor-pointer',
+      className
+    )}
     ref={ref}
     {...props}
-  />
+  >
+    {sort !== undefined ? (
+      <div className={cn('flex items-center w-full h-full gap-2', sortingClassname)}>
+        {children}
+        <CaretIcon direction={sort} />
+      </div>
+    ) : (
+      children
+    )}
+  </th>
 ))
 
 TableHead.displayName = 'TableHead'
