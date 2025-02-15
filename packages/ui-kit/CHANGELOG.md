@@ -1,5 +1,13 @@
 # @meetgram/ui-kit
 
+## 0.1.8
+
+### Patch Changes
+
+- New features: a table sorting, a configurable delay in debounced search.
+
+  Some bug fixes.
+
 ## 0.2.2
 
 ### Patch Changes
