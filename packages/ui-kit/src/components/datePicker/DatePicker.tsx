@@ -1,7 +1,7 @@
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 
-import { Calendar } from '../../assets/icons/Calendar'
 import { range } from '@meetgram/utils'
+import { Calendar } from '../../assets/icons/Calendar'
 import useTranslate from './translate/useTranslate'
 
 import clsx from 'clsx'
@@ -13,10 +13,10 @@ import { ru } from 'date-fns/locale/ru'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-import s from './DatePicker.module.scss'
 import { Button } from '../button/button'
-import { Input } from '../input'
-import { Select, Option } from '../select'
+import { Input } from '../input/index'
+import { Option, Select } from '../select/index'
+import s from './DatePicker.module.scss'
 
 registerLocale('ru', ru)
 registerLocale('en', enUS)
