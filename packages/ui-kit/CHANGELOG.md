@@ -1,6 +1,12 @@
 # @meetgram/ui-kit
 
-## 0.1.8
+## 0.2.4
+
+### Patch Changes
+
+- Bug fixes: Date Picker component
+
+## 0.2.3
 
 ### Patch Changes
 
