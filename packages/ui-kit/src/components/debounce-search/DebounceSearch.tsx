@@ -53,7 +53,6 @@ export const DebounceSearch = ({
     <>
       <Input
         clearValue={onClearValue}
-        defaultValue={defaultValue}
         value={str}
         className={s.search}
         onChange={e => onChangeValue(e.currentTarget.value)}
