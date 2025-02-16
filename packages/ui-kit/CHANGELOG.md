@@ -1,5 +1,11 @@
 # @meetgram/ui-kit
 
+## 0.2.5
+
+### Patch Changes
+
+- Fix: React console warning during develop mode
+
 ## 0.2.4
 
 ### Patch Changes
