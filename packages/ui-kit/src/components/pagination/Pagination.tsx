@@ -1,158 +1,182 @@
-import  { useEffect, useState } from 'react'
+import { Select } from '../select'
+import s from './pagination.module.scss'
+import { usePagination } from './usePagination'
+import { ArrowNext, ArrowPrev } from '../../assets'
+import { ButtonIcon } from '../buttonIcon'
 
-import styles from './styles.module.scss'
+type PaginationConditionals =
+  | {
+      onPerPageChange: (itemPerPage: string) => void
+      perPage: string
+      perPageOptions: string[]
+    }
+  | {
+      onPerPageChange?: never
+      perPage?: null
+      perPageOptions?: never
+    }
 
-import { Button } from '../button/button'
+    type Text ={
+      show: string
+      onPage: string
+    }
 
-/**
- * Props для компонента Pagination
- * @typedef {Object} Props
- * @property {number} currentPage - Текущая страница
- * @property {function} onPageChange - Функция, вызываемая при изменении страницы (принимает номер новой страницы)
- * @property {function} onPerPageChange - Функция, вызываемая при изменении количества элементов на странице (принимает новое значение)
- * @property {number} pageCount - Общее количество страниц
- * @property {boolean} isDropdownUp - Определяет, раскрывается ли выпадающий список вверх
- */
-type Props = {
-  currentPage: number
-  isDropdownUp?: boolean
-  onPageChange: (page: number) => void
-  onPerPageChange: (itemsPerPage: number) => void
-  options: number[]
-  pageCount: number
-}
+export type PaginationProps = {
+  count: number
+  onChange: (page: number) => void
+  onPerPageChange?: (itemPerPage: string) => void
+  page: number
+  perPage?: string | null
+  perPageOptions?: string[]
+  siblings?: number
+  text?: Text
+} & PaginationConditionals
 
-export const Pagination = ({
-  currentPage,
-  isDropdownUp = false,
-  onPageChange,
+
+export const Pagination  = ({
+  count,
+  onChange,
   onPerPageChange,
-  options,
-  pageCount,
-}: Props) => {
-  const [pageNumbers, setPageNumbers] = useState<(number | string)[]>([])
-  const [page, setPage] = useState<number>(currentPage)
-  const [perPage, setPerPage] = useState<number>(10)
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
+  page,
+  perPage = null,
+  perPageOptions,
+  siblings,
+  text,
+}: PaginationProps) => {
+  const {
+    handleMainPageClicked,
+    handleNextPageClicked,
+    handlePreviousPageClicked,
+    isFirstPage,
+    isLastPage,
+    paginationRange,
+  } = usePagination({
+    count,
+    onChange,
+    page,
+    siblings,
+  })
+  const showPerPageSelect = !!perPage && !!perPageOptions && !!onPerPageChange
 
-  useEffect(() => {
-    const pagesRow: (number | string)[] = []
-
-    if (page <= 4) {
-      for (let i = 1; i <= Math.min(5, pageCount); i++) {
-        pagesRow.push(i)
-      }
-      if (pageCount > 5) {
-        pagesRow.push('...')
-        pagesRow.push(pageCount)
-      }
-    } else if (page >= pageCount - 3) {
-      pagesRow.push(1)
-      if (pageCount > 5) {
-        pagesRow.push('...')
-      }
-      for (let i = Math.max(pageCount - 4, 1); i <= pageCount; i++) {
-        pagesRow.push(i)
-      }
-    } else {
-      pagesRow.push(1)
-      pagesRow.push('...')
-      for (let i = page - 1; i <= page + 1; i++) {
-        pagesRow.push(i)
-      }
-      pagesRow.push('...')
-      pagesRow.push(pageCount)
-    }
-
-    setPageNumbers(pagesRow)
-  }, [page, pageCount])
-
-  useEffect(() => {
-    setPage(currentPage)
-  }, [currentPage])
-
-  const handleChangePage = (selectedPage: number | string) => {
-    if (typeof selectedPage === 'number') {
-      setPage(selectedPage)
-      onPageChange(selectedPage)
-    }
-  }
-
-  const nextPage = () => {
-    if (page < pageCount) {
-      const newPage = page + 1
-
-      setPage(newPage)
-      onPageChange(newPage)
-    }
-  }
-
-  const prevPage = () => {
-    if (page > 1) {
-      const newPage = page - 1
-
-      setPage(newPage)
-      onPageChange(newPage)
-    }
-  }
-
-  const handlePerPageChange = (itemsPerPage: number) => {
-    setPerPage(itemsPerPage)
-    onPerPageChange(itemsPerPage)
-    setIsDropdownOpen(false)
-  }
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen)
+  if (count === 0 || paginationRange.length < 2) {
+    return null
   }
 
   return (
-    <div className={styles.paginationWrapper}>
-      <Button
-        className={`${styles.pageItem} ${styles.arrowBtnL}`}
-        disabled={page === 1}
-        onClick={prevPage}
-      />
+    <div className={s.root}>
+      <div className={s.container}>
+        <PrevButton disabled={isFirstPage} onClick={handlePreviousPageClicked} />
 
-      {pageNumbers.map(pageNumber => (
-        <div key={pageNumber} onClick={() => handleChangePage(pageNumber)}>
-          <div className={`${pageNumber === page ? styles.selectedPage : styles.pageItem}`}>
-            {pageNumber}
-          </div>
-        </div>
-      ))}
+        <MainPaginationButtons
+          currentPage={page}
+          onClick={handleMainPageClicked}
+          paginationRange={paginationRange}
+        />
 
-      <Button
-        className={`${styles.pageItem} ${styles.arrowBtnR}`}
-        disabled={page === pageCount}
-        onClick={nextPage}
-      />
-
-      <span className={styles.text}>Show</span>
-      <div>
-        <div className={styles.customSelectWrapper}>
-          <div className={styles.customSelect} onClick={toggleDropdown}>
-            <span>{perPage}</span>
-            <span className={`${styles.arrow} ${isDropdownOpen ? styles.open : ''}`} />
-          </div>
-          {isDropdownOpen && (
-            <div
-              className={`${styles.options} ${isDropdownUp ? styles.optionsUp : styles.optionsDown}`}
-            >
-              {options.map(option => (
-                <div
-                  className={`${styles.option} ${option === perPage ? styles.selectedOption : ''}`}
-                  key={option}
-                  onClick={() => handlePerPageChange(option)}
-                >
-                  {option}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
       </div>
-      <span className={styles.text}> on page</span>
+
+      {showPerPageSelect && (
+        <PerPageSelect
+          {...{
+            onPerPageChange,
+            perPage,
+            perPageOptions,
+            text
+          }}
+        />
+      )}
+    </div>
+  )
+}
+
+type NavigationButtonProps = {
+  disabled?: boolean
+  onClick: () => void
+}
+
+type PageButtonProps = NavigationButtonProps & {
+  page: number
+  selected: boolean
+}
+
+const Dots = () => {
+  return <ButtonIcon className={s.dots}>&#8230;</ButtonIcon>
+}
+const PageButton= ({ disabled, onClick, page, selected } : PageButtonProps) => {
+  return (
+    <button  onClick={onClick} className={`${selected ? s.selectedPage : s.pageItem}`} disabled={selected || disabled}>
+      {page}
+    </button>  
+  )
+}
+const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
+  return (
+    <ButtonIcon  disabled={disabled} onClick={onClick}><ArrowPrev className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
+  )
+}
+
+const NextButton = ({ disabled, onClick }: NavigationButtonProps) => {
+  return (
+    <ButtonIcon  disabled={disabled} onClick={onClick}><ArrowNext className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
+  )
+}
+
+type MainPaginationButtonsProps = {
+  currentPage: number
+  onClick: (pageNumber: number) => () => void
+  paginationRange: (number | string)[]
+}
+
+const MainPaginationButtons  = ({
+  currentPage,
+  onClick,
+  paginationRange,
+}: MainPaginationButtonsProps) => {
+  return (
+    <>
+      {paginationRange.map((page: number | string, index) => {
+        const isSelected = page === currentPage
+
+        if (typeof page !== 'number') {
+          return <Dots key={index} />
+        }
+
+        return <PageButton key={index} onClick={onClick(page)} page={page} selected={isSelected} />
+      })}
+    </>
+  )
+}
+
+export type PerPageSelectProps = {
+  onPerPageChange: (itemPerPage: string) => void
+  perPage: string
+  perPageOptions: string[]
+  text?: Text
+}
+
+export const PerPageSelect = ({
+  onPerPageChange,
+  perPage,
+  perPageOptions,
+  text
+}: PerPageSelectProps) => {
+  const selectOptions = perPageOptions.map(value => ({
+    label: value,
+    value,
+  }))
+
+  return (
+    <div className={s.selectBox}>
+     {text?.show ?? 'Show'} 
+      <Select
+        contentClassName={s.select}
+        onValueChange={onPerPageChange}
+        options={selectOptions}
+        value={perPage}
+        withPortal
+      />
+      {text?.onPage ?? 'on page'}
     </div>
   )
 }
