@@ -8,19 +8,40 @@ const meta = {
   argTypes: {},
   component: Pagination,
   tags: ['autodocs'],
-  title: 'NewPagination',
+  title: 'shared/Pagination',
 } satisfies Meta<typeof Pagination>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const DefaultPagination: Story = {
+  args: {
+    count: 30,
+    page: 1
+  },
+  render: args => {
+    const [page, setPage] = useState(1)
+
+    return (
+      <>
+        <Pagination
+          {...args}
+          count={30}
+          onChange={page => {
+            setPage(page)
+          }}
+          page={page}
+          siblings={1}
+        />
+      </>
+    )
+  },
+}
+
 export const PaginationWithSelect: Story = {
   args: {
     count: 30,
-    onPerPageChange: () => {},
     page: 1,
-    perPage: '5',
-    perPageOptions: ['3', '5', '7', '10'],
   },
   render: args => {
     const [page, setPage] = useState(1)
@@ -30,7 +51,6 @@ export const PaginationWithSelect: Story = {
       <>
         <Pagination
           {...args}
-          count={30}
           onChange={page => {
             setPage(page)
           }}
@@ -51,10 +71,7 @@ export const PaginationWithSelect: Story = {
 export const PaginationWithSelectUp: Story = {
   args: {
     count: 30,
-    onPerPageChange: () => {},
     page: 1,
-    perPage: '5',
-    perPageOptions: ['3', '5', '7', '10'],
   },
   render: args => {
     const [page, setPage] = useState(1)

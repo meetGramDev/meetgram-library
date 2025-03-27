@@ -4,22 +4,12 @@ import { usePagination } from './usePagination'
 import { ArrowNext, ArrowPrev } from '../../assets'
 import { ButtonIcon } from '../buttonIcon'
 
-type PaginationConditionals =
-  | {
-      onPerPageChange: (itemPerPage: string) => void
-      perPage: string
-      perPageOptions: string[]
-    }
-  | {
-      onPerPageChange?: never
-      perPage?: null
-      perPageOptions?: never
-    }
 
-    type Text ={
-      show: string
-      onPage: string
-    }
+type Text ={
+  show: string
+  onPage: string
+}
+
 
 export type PaginationProps = {
   count: number
@@ -27,10 +17,10 @@ export type PaginationProps = {
   onPerPageChange?: (itemPerPage: string) => void
   page: number
   perPage?: string | null
-  perPageOptions?: string[]
+  perPageOptions?: string[] 
   siblings?: number
   text?: Text
-} & PaginationConditionals
+} 
 
 
 export const Pagination  = ({
@@ -112,13 +102,13 @@ const PageButton= ({ disabled, onClick, page, selected } : PageButtonProps) => {
 }
 const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
-    <ButtonIcon  disabled={disabled} onClick={onClick}><ArrowPrev className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
+    <ButtonIcon className={s.btnAr}  disabled={disabled} onClick={onClick}><ArrowPrev className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
   )
 }
 
 const NextButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
-    <ButtonIcon  disabled={disabled} onClick={onClick}><ArrowNext className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
+    <ButtonIcon className={s.btnAr}  disabled={disabled} onClick={onClick}><ArrowNext className={disabled ? s.iconDis: s.arIcon}/></ButtonIcon>
   )
 }
 

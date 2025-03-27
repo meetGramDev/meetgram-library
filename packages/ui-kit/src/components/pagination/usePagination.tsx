@@ -18,7 +18,7 @@ type UsePaginationParamType = {
 type PaginationRange = ('...' | number)[]
 
 export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePaginationParamType) => {
-  const paginationRange = useMemo(() => {
+  const paginationRange = ((): PaginationRange => {
     const totalPageNumbers = siblings + 5
 
     if (totalPageNumbers >= count) {
@@ -53,7 +53,9 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
 
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex]
     }
-  }, [siblings, page, count]) as PaginationRange
+    return []
+  })()
+
 
   const lastPage = paginationRange.at(-1)
 
@@ -68,9 +70,11 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
     onChange(page - 1)
   }, [page, onChange])
 
-  function handleMainPageClicked(pageNumber: number) {
+  
+
+  const handleMainPageClicked = useCallback((pageNumber: number) => {
     return () => onChange(pageNumber)
-  }
+  }, [onChange])
 
   return {
     handleMainPageClicked,
