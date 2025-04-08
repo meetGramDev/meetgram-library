@@ -12,24 +12,24 @@ type Text ={
 
 
 export type PaginationProps = {
-  count: number
-  onChange: (page: number) => void
+  pageCount: number
+  onPageChange: (page: number) => void
   onPerPageChange?: (itemPerPage: string) => void
-  page: number
+  currentPage: number
   perPage?: string | null
-  perPageOptions?: string[] 
+  options?: string[] 
   siblings?: number
   text?: Text
 } 
 
 
 export const Pagination  = ({
-  count,
-  onChange,
+  pageCount,
+  onPageChange,
   onPerPageChange,
-  page,
+  currentPage,
   perPage = null,
-  perPageOptions,
+  options,
   siblings,
   text,
 }: PaginationProps) => {
@@ -41,14 +41,14 @@ export const Pagination  = ({
     isLastPage,
     paginationRange,
   } = usePagination({
-    count,
-    onChange,
-    page,
+    pageCount,
+    onPageChange,
+    currentPage,
     siblings,
   })
-  const showPerPageSelect = !!perPage && !!perPageOptions && !!onPerPageChange
+  const showPerPageSelect = !!perPage && !!options && !!onPerPageChange
 
-  if (count === 0 || paginationRange.length < 2) {
+  if (pageCount === 0 || paginationRange.length < 2) {
     return null
   }
 
@@ -58,7 +58,7 @@ export const Pagination  = ({
         <PrevButton disabled={isFirstPage} onClick={handlePreviousPageClicked} />
 
         <MainPaginationButtons
-          currentPage={page}
+          currentPage={currentPage}
           onClick={handleMainPageClicked}
           paginationRange={paginationRange}
         />
@@ -71,7 +71,7 @@ export const Pagination  = ({
           {...{
             onPerPageChange,
             perPage,
-            perPageOptions,
+            options,
             text
           }}
         />
@@ -141,17 +141,17 @@ const MainPaginationButtons  = ({
 export type PerPageSelectProps = {
   onPerPageChange: (itemPerPage: string) => void
   perPage: string
-  perPageOptions: string[]
+  options: string[]
   text?: Text
 }
 
 export const PerPageSelect = ({
   onPerPageChange,
   perPage,
-  perPageOptions,
+  options,
   text
 }: PerPageSelectProps) => {
-  const selectOptions = perPageOptions.map(value => ({
+  const selectOptions = options.map(value => ({
     label: value,
     value,
   }))

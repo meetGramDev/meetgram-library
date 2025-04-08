@@ -16,8 +16,8 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultPagination: Story = {
   args: {
-    count: 30,
-    page: 1
+    pageCount: 30,
+    currentPage: 1
   },
   render: args => {
     const [page, setPage] = useState(1)
@@ -26,11 +26,11 @@ export const DefaultPagination: Story = {
       <>
         <Pagination
           {...args}
-          count={30}
-          onChange={page => {
+          pageCount={30}
+          onPageChange={page => {
             setPage(page)
           }}
-          page={page}
+          currentPage={page}
           siblings={1}
         />
       </>
@@ -40,8 +40,8 @@ export const DefaultPagination: Story = {
 
 export const PaginationWithSelect: Story = {
   args: {
-    count: 30,
-    page: 1,
+    pageCount: 30,
+    currentPage: 1,
   },
   render: args => {
     const [page, setPage] = useState(1)
@@ -51,15 +51,15 @@ export const PaginationWithSelect: Story = {
       <>
         <Pagination
           {...args}
-          onChange={page => {
+          onPageChange={page => {
             setPage(page)
           }}
           onPerPageChange={select => {
             setSelect(select)
           }}
-          page={page}
+          currentPage={page}
           perPage={select}
-          perPageOptions={['3', '5', '7', '10']}
+          options={['3', '5', '7', '10']}
           siblings={1}
         />
       </>
@@ -70,8 +70,8 @@ export const PaginationWithSelect: Story = {
 
 export const PaginationWithSelectUp: Story = {
   args: {
-    count: 30,
-    page: 1,
+    pageCount: 30,
+    currentPage: 1,
   },
   render: args => {
     const [page, setPage] = useState(1)
@@ -82,16 +82,16 @@ export const PaginationWithSelectUp: Story = {
       <div style={{height: '600px', backgroundColor: 'black'}}></div>
         <Pagination
           {...args}
-          count={30}
-          onChange={page => {
+          pageCount={30}
+          onPageChange={page => {
             setPage(page)
           }}
           onPerPageChange={select => {
             setSelect(select)
           }}
-          page={page}
+          currentPage={page}
           perPage={select}
-          perPageOptions={['3', '5', '7', '10']}
+          options={['3', '5', '7', '10']}
           siblings={1}
         />
       </>
