@@ -1,5 +1,11 @@
 # @meetgram/ui-kit
 
+## 0.2.7
+
+### Patch Changes
+
+- pagination props adjusted
+
 ## 0.2.6
 
 ### Patch Changes

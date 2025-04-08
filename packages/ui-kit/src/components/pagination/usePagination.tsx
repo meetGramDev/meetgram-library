@@ -9,41 +9,41 @@ const range = (start: number, end: number) => {
 const DOTS = '...'
 
 type UsePaginationParamType = {
-  count: number
-  onChange: (pageNumber: number) => void
-  page: number
+  pageCount: number
+  onPageChange: (pageNumber: number) => void
+  currentPage: number
   siblings?: number
 }
 
 type PaginationRange = ('...' | number)[]
 
-export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePaginationParamType) => {
+export const usePagination = ({ pageCount, onPageChange, currentPage, siblings = 1 }: UsePaginationParamType) => {
   const paginationRange = ((): PaginationRange => {
     const totalPageNumbers = siblings + 5
 
-    if (totalPageNumbers >= count) {
-      return range(1, count)
+    if (totalPageNumbers >= pageCount) {
+      return range(1, pageCount)
     }
 
-    const leftSiblingIndex = Math.max(page - siblings, 1)
-    const rightSiblingIndex = Math.min(page + siblings, count)
+    const leftSiblingIndex = Math.max(currentPage - siblings, 1)
+    const rightSiblingIndex = Math.min(currentPage + siblings, pageCount)
 
     const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < count - 2
+    const shouldShowRightDots = rightSiblingIndex < pageCount - 2
 
     const firstPageIndex = 1
-    const lastPageIndex = count
+    const lastPageIndex = pageCount
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       const leftItemCount = 3 + 2 * siblings
       const leftRange = range(1, leftItemCount)
 
-      return [...leftRange, DOTS, count]
+      return [...leftRange, DOTS, pageCount]
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblings
-      const rightRange = range(count - rightItemCount + 1, count)
+      const rightRange = range(pageCount - rightItemCount + 1, pageCount)
 
       return [firstPageIndex, DOTS, ...rightRange]
     }
@@ -59,22 +59,22 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
 
   const lastPage = paginationRange.at(-1)
 
-  const isFirstPage = page === 1
-  const isLastPage = page === lastPage
+  const isFirstPage = currentPage === 1
+  const isLastPage = currentPage === lastPage
 
   const handleNextPageClicked = useCallback(() => {
-    onChange(page + 1)
-  }, [page, onChange])
+    onPageChange(currentPage + 1)
+  }, [currentPage, onPageChange])
 
   const handlePreviousPageClicked = useCallback(() => {
-    onChange(page - 1)
-  }, [page, onChange])
+    onPageChange(currentPage - 1)
+  }, [currentPage, onPageChange])
 
   
 
   const handleMainPageClicked = useCallback((pageNumber: number) => {
-    return () => onChange(pageNumber)
-  }, [onChange])
+    return () => onPageChange(pageNumber)
+  }, [onPageChange])
 
   return {
     handleMainPageClicked,
