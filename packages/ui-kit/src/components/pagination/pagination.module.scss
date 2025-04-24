@@ -2,22 +2,31 @@
     display: flex;
     gap: 25px;
     align-items: center;
+
+    @media (width <= 600px) {
+      flex-direction: column; 
+    }
   } 
   
+
+
   .container {
     display: flex;
-    gap: 12px;
+    gap: 0.75vw; 
     list-style-type: none;
   } 
+
   
   .selectBox {
     display: flex;
-    gap: 12px;
+    gap: 0.75vw; 
     align-items: center;
-  
+
     color: var(--color-light-100);
     white-space: nowrap;
-  } 
+
+  }
+  
   
   .select {
     flex-shrink: 0;

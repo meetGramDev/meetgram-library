@@ -79,7 +79,7 @@ export const PaginationWithSelectUp: Story = {
 
     return (
       <>
-      <div style={{height: '600px', backgroundColor: 'black'}}></div>
+      <div style={{height: '600px', backgroundColor: 'grey'}}></div>
         <Pagination
           {...args}
           pageCount={30}
