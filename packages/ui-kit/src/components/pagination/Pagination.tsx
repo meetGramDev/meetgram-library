@@ -65,7 +65,7 @@ export const Pagination  = ({
 
         <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
       </div>
-
+     <div className={s.selectContainer}>
       {showPerPageSelect && (
         <PerPageSelect
           {...{
@@ -76,6 +76,7 @@ export const Pagination  = ({
           }}
         />
       )}
+      </div>
     </div>
   )
 }
