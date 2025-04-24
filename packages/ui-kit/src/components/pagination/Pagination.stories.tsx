@@ -1,19 +1,11 @@
+import { useState } from 'react'
+
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Pagination } from './Pagination'
 
 const meta = {
-  args: {
-    currentPage: 1,
-    onPageChange: (page: number) => {
-      console.log(`Page changed to: ${page}`)
-    },
-    onPerPageChange: (perPage: number) => {
-      console.log(`Items per page changed to: ${perPage}`)
-    },
-    options: [5, 10, 20, 100],
-    pageCount: 10,
-  },
+  argTypes: {},
   component: Pagination,
   tags: ['autodocs'],
   title: 'shared/Pagination',
@@ -22,19 +14,88 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// Основной шаблон компонента Pagination
-export const DefaultPagination: Story = {}
-
-export const CustomPagination: Story = {
+export const DefaultPagination: Story = {
   args: {
-    currentPage: 5,
-    pageCount: 20,
+    pageCount: 30,
+    currentPage: 1
+  },
+  render: args => {
+    const [page, setPage] = useState(1)
+
+    return (
+      <>
+        <Pagination
+          {...args}
+          pageCount={30}
+          onPageChange={page => {
+            setPage(page)
+          }}
+          currentPage={page}
+          siblings={1}
+        />
+      </>
+    )
   },
 }
 
-// Пример с кастомным обработчиком onPageChange
-export const PaginationWithCustomHandler: Story = {
+export const PaginationWithSelect: Story = {
   args: {
-    onPageChange: (page: number) => alert(`New page is: ${page}`),
+    pageCount: 30,
+    currentPage: 1,
+  },
+  render: args => {
+    const [page, setPage] = useState(1)
+    const [select, setSelect] = useState('3')
+
+    return (
+      <>
+        <Pagination
+          {...args}
+          onPageChange={page => {
+            setPage(page)
+          }}
+          onPerPageChange={select => {
+            setSelect(select)
+          }}
+          currentPage={page}
+          perPage={select}
+          options={['3', '5', '7', '10']}
+          siblings={1}
+        />
+      </>
+    )
   },
 }
+
+
+export const PaginationWithSelectUp: Story = {
+  args: {
+    pageCount: 30,
+    currentPage: 1,
+  },
+  render: args => {
+    const [page, setPage] = useState(1)
+    const [select, setSelect] = useState('3')
+
+    return (
+      <>
+      <div style={{height: '600px', backgroundColor: 'grey'}}></div>
+        <Pagination
+          {...args}
+          pageCount={30}
+          onPageChange={page => {
+            setPage(page)
+          }}
+          onPerPageChange={select => {
+            setSelect(select)
+          }}
+          currentPage={page}
+          perPage={select}
+          options={['3', '5', '7', '10']}
+          siblings={1}
+        />
+      </>
+    )
+  },
+}
+

@@ -11,6 +11,8 @@
   font: var(--font-regular);
   color: var(--light-color-100);
 
+  background-color: var(--dark-color-900);
+
   &[data-disabled] {
     pointer-events: none;
     color: var(--light-color-900);
