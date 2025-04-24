@@ -1,15 +1,14 @@
 .root {
     display: flex;
     gap: 25px;
-    align-items: center
+    align-items: center;
+
+    @media (width <= 600px) {
+      flex-direction: column; 
+    }
   } 
   
 
-  @media (width <= 600px) {
-    .root {
-        flex-direction: column; 
-    }
-}
 
   .container {
     display: flex;
